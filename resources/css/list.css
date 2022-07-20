@@ -1,0 +1,17 @@
+.title {
+	text-align: center;
+	padding: .75rem;
+	font-weight: bold;
+	color: darkorange;
+}
+
+.container {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+	grid-gap: .3em;
+}
+
+.container .card-img-top {
+	height: 20rem;
+	object-fit: contain;
+}
