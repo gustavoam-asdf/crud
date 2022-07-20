@@ -32,4 +32,15 @@ class ProductRepository
 		);
 		return $products;
 	}
+
+	public function update(Product $p)
+	{
+		$query = $this
+			->mysql
+			->prepare("UPDATE product 
+				SET name = ?, description = ?, price = ?, image_url = ?
+				WHERE id = ?");
+		$query->bind_param("ssdbi", $p->name, $p->description, $p->price, $p->imageUrl, $p->id);
+		$query->execute();
+	}
 }
