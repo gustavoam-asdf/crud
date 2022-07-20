@@ -15,10 +15,9 @@ class ProductRepository
 
 	public function getAll()
 	{
-		$products_data =
-			$this
+		$products_data = $this
 			->mysql
-			->query("SELECT id, name, description, price FROM product")
+			->query("SELECT id, name, description, price, image_url FROM product")
 			->fetch_all();
 
 		$products = array_map(
@@ -26,7 +25,8 @@ class ProductRepository
 				$product_data[0],
 				$product_data[1],
 				$product_data[2],
-				$product_data[3]
+				$product_data[3],
+				$product_data[4],
 			),
 			$products_data
 		);

@@ -12,17 +12,21 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-cs-1">
-				<h1>Listado de productos</h1>
+			<div class="col-cs-1 ">
+				<h1>Lista de productos</h1>
 				<?php
 				foreach ($products as $product) {
-					echo "<strong>{$product->name}</strong> - {$product->description} <br>";
+					echo "
+					<div class='card' style='width: 18rem;'>
+						<img src='{$product->imageUrl}' class='card-img-top' alt='product_image'>
+						<div class='card-body'>
+							<h5 class='card-title'>{$product->name}</h5>
+							<p class='card-text'>{$product->description}</p>
+							<a href='' class='btn btn-primary'>Editar</a>
+						</div>
+					</div>";
 				}
 				?>
-				<hr>
-				<p>
-					<a href="pdf.php">Exportar en PDF</a>
-				</p>
 			</div>
 		</div>
 	</div>

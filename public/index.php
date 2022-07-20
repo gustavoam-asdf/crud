@@ -5,7 +5,6 @@ require '../config/env.php';
 
 use App\Entities\ProductRepository;
 use App\Entities\MySQL;
-use App\Entities\Product;
 
 $mysql = new MySQL;
 $mysql->connect($host, $username, $password, $database, $port);
