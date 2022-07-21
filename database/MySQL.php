@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Entities;
+namespace Database;
 
 use Exception;
 use mysqli;
-
-require '../config/env.php';
 
 class MySQL
 {

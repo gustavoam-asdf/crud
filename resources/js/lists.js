@@ -61,20 +61,36 @@ function productContainerHandler() {
 /**
  * @param {HTMLFormElement} $form 
  */
-function saveEditedProductHandler($form) {
+async function saveEditedProductHandler($form) {
 	const data = new FormData($form)
 	data.append('product-id', productId)
 
-	const fetchOptions = {
-		method: 'POST',
-		body: data
+	const product = {
+		id: productId,
+		name: data.get('product-name').trim(),
+		description: data.get('product-description').trim(),
+		price: Number(data.get('product-price')),
+		imageUrl: data.get('product-url').trim()
 	}
 
-	fetch(`/crud/public/api/v1/products.php`, fetchOptions)
+	/**
+	 * @type {RequestInit}
+	 */
+	const fetchOptions = {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(product)
+	}
+
+	await fetch(`/crud/api/v1/products.php`, fetchOptions)
 		.then(res => res.json())
 		.then(data => {
-			console.log(JSON.parse(data))
+			console.log(data)
 		})
+
+	location.reload()
 
 }
 

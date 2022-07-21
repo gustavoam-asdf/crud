@@ -2,7 +2,7 @@
 
 namespace App\Entities;
 
-use App\Entities\MySQL;
+use Database\MySQL;
 
 class ProductRepository
 {
@@ -33,14 +33,42 @@ class ProductRepository
 		return $products;
 	}
 
+	public function create(Product $p)
+	{
+		$query = $this
+			->mysql
+			->prepare("INSERT INTO product (
+					create_time, 
+					update_time,
+					name,
+					description,
+					price,
+					image_url
+				VALUES (
+					now(),
+					now(),
+					?,
+					?,
+					?,
+					?
+				)");
+		$query->bind_param("ssds", $p->name, $p->description, $p->price, $p->imageUrl);
+		return $query->execute();
+	}
+
 	public function update(Product $p)
 	{
 		$query = $this
 			->mysql
 			->prepare("UPDATE product 
-				SET name = ?, description = ?, price = ?, image_url = ?
+				SET 
+					update_time = now(),
+					name = ?, 
+					description = ?, 
+					price = ?, 
+					image_url = ?
 				WHERE id = ?");
-		$query->bind_param("ssdbi", $p->name, $p->description, $p->price, $p->imageUrl, $p->id);
-		$query->execute();
+		$query->bind_param("ssdsi", $p->name, $p->description, $p->price, $p->imageUrl, $p->id);
+		return $query->execute();
 	}
 }

@@ -1,13 +1,19 @@
 <?php
 
-require '../vendor/autoload.php';
-require '../config/env.php';
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../config/env.php';
 
 use App\Entities\ProductRepository;
-use App\Entities\MySQL;
+use Database\MySQL;
 
 $mysql = new MySQL;
-$mysql->connect($host, $username, $password, $database, $port);
+$mysql->connect(
+	$_ENV['DB_HOST'],
+	$_ENV['DB_USERNAME'],
+	$_ENV['DB_PASSWORD'],
+	$_ENV['DB_DATABASE'],
+	$_ENV['DB_PORT']
+);
 
 $productRepository = new ProductRepository($mysql);
 
