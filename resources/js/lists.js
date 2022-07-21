@@ -1,72 +1,14 @@
-/**
- * @param {string} selector 
- * @returns {HTMLElement | null}
- */
-const $ = (selector) => document.querySelector(selector)
-let productId
-const getProductInputs = () => ({
-	$name: $('#product-name'),
-	$description: $('#product-description'),
-	$price: $('#product-price'),
-	$imageUrl: $('#product-url')
-})
-
-/**
- * @param {HTMLDivElement} $card 
- */
-function getProductCardContent($card) {
-	const $cardBody = $card.querySelector('div.card-body')
-
-	const product = {
-		id: Number($card.dataset.productId),
-		name: $cardBody.querySelector('h5.card-title').textContent.trim(),
-		description: $cardBody.querySelector('p.card-text').textContent.trim(),
-		price: Number($cardBody.querySelector('span.price').dataset.price.trim()),
-		imageUrl: $card.querySelector('img').src.trim()
-	}
-
-	return product
-}
-
-/**
- * @param {MouseEvent} evt 
- */
-function productContainerClickHandler(evt) {
-	/**
- * @type {HTMLButtonElement}
- */
-	const $target = evt.target
-	const $targetType = $target.getAttribute('type')
-	if ($targetType !== 'button') return
-
-	const productInputs = getProductInputs()
-
-	const $card = $target.closest('div.card')
-	const targetProduct = getProductCardContent($card)
-
-	productId = Number(targetProduct.id)
-	productInputs.$name.value = targetProduct.name
-	productInputs.$description.value = targetProduct.description
-	productInputs.$price.value = targetProduct.price
-	productInputs.$imageUrl.value = targetProduct.imageUrl
-
-}
-
-function productContainerHandler() {
-	const $productContainer = $('#product-container');
-	if (!$productContainer) return
-	$productContainer.addEventListener("click", productContainerClickHandler)
-}
+import { $ } from "./utils/querySelector.js";
+import { productContainerHandler } from "./handlers/productContainer/index.js";
 
 /**
  * @param {HTMLFormElement} $form 
  */
 async function saveEditedProductHandler($form) {
 	const data = new FormData($form)
-	data.append('product-id', productId)
 
 	const product = {
-		id: productId,
+		id: Number($form.dataset.productId),
 		name: data.get('product-name').trim(),
 		description: data.get('product-description').trim(),
 		price: Number(data.get('product-price')),
@@ -94,9 +36,7 @@ async function saveEditedProductHandler($form) {
 
 }
 
-function editProductHandler() {
-	const $form = $('#edit-product')
-	if (!$form) return
+function editProductHandler($form) {
 	$form.addEventListener("submit", (evt) => {
 		evt.preventDefault()
 		saveEditedProductHandler($form)
@@ -104,6 +44,8 @@ function editProductHandler() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	productContainerHandler()
-	editProductHandler()
+	const $form = $('#edit-product')
+	if (!$form) return
+	productContainerHandler($form)
+	editProductHandler($form)
 })
