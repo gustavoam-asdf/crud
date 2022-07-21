@@ -66,3 +66,17 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 		'action' => 'create'
 	]);
 }
+
+if ($_SERVER['REQUEST_METHOD'] === "DELETE") {
+	header('Content-Type: application/json');
+	$_POST = getRequestBody();
+
+	$status = $productRepository->delete($_POST['productId']);
+
+	http_response_code($status ? 200 : 500);
+	echo json_encode([
+		'ok' => $status,
+		'status' => $status ? 'success' : 'failed',
+		'action' => 'delete'
+	]);
+}
