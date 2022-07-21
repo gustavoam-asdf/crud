@@ -32,6 +32,9 @@
 						<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modal-edit-product'>
 							Editar
 						</button>
+						<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#modal-delete-product'>
+							Eliminar
+						</button>
 					</div>
 				</div>";
 			}
@@ -71,6 +74,25 @@
 						<button type="submit" class="btn btn-primary" id="save-edited-product">Guardar cambios</button>
 					</div>
 				</form>
+			</div>
+		</div>
+		<div class="modal fade" id="modal-delete-product" tabindex="-1" role="dialog" aria-labelledby="edit-product" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Eliminar producto</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>¿Está seguro de eliminar el producto?</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+						<button type="button" class="btn btn-danger">Eliminar</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
