@@ -1,10 +1,15 @@
 import { getProductCardContent } from "../../utils/getProductCardContent.js"
+import { $ } from "../../utils/querySelector.js"
 
 /**
  * @param {MouseEvent} evt 
- * @param {HTMLFormElement} $form
  */
-export function clickHandler(evt, $form) {
+export function clickHandler(evt) {
+	const $editForm = $('#edit-product')
+	if (!$editForm) return
+	const $deleteForm = $('#delete-product')
+	if (!$deleteForm) return
+
 	/**
  * @type {HTMLButtonElement}
  */
@@ -15,9 +20,10 @@ export function clickHandler(evt, $form) {
 	const $card = $target.closest('div.card')
 	const targetProduct = getProductCardContent($card)
 
-	$form.dataset.productId = targetProduct.id
-	$form['product-name'].value = targetProduct.name
-	$form['product-description'].value = targetProduct.description
-	$form['product-price'].value = targetProduct.price
-	$form['product-url'].value = targetProduct.imageUrl
+	$editForm.dataset.productId = targetProduct.id
+	$deleteForm.dataset.productId = targetProduct.id
+	$editForm['product-name'].value = targetProduct.name
+	$editForm['product-description'].value = targetProduct.description
+	$editForm['product-price'].value = targetProduct.price
+	$editForm['product-url'].value = targetProduct.imageUrl
 }

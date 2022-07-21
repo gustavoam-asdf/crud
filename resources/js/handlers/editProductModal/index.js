@@ -1,10 +1,10 @@
+import { $ } from "../../utils/querySelector.js"
 import { submitHandler } from "./submitHandler.js"
 
-/**
- * @param {HTMLFormElement} $form 
- */
-export function editProductHandler($form) {
-	$form.addEventListener("submit", (evt) => {
+export function editProductHandler() {
+	const $editForm = $('#edit-product')
+	if (!$editForm) return
+	$editForm.addEventListener("submit", (evt) => {
 		evt.preventDefault()
 		submitHandler($form)
 	})

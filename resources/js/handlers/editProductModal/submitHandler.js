@@ -1,11 +1,8 @@
-/**
- * @param {HTMLFormElement} $form 
- */
-export async function submitHandler($form) {
-	const data = new FormData($form)
+export async function submitHandler($editForm) {
+	const data = new FormData($editForm)
 
 	const product = {
-		id: Number($form.dataset.productId),
+		id: Number($editForm.dataset.productId),
 		name: data.get('product-name').trim(),
 		description: data.get('product-description').trim(),
 		price: Number(data.get('product-price')),

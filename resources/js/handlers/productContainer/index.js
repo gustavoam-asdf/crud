@@ -1,11 +1,8 @@
 import { $ } from "../../utils/querySelector.js";
 import { clickHandler } from "./clickHandler.js";
 
-/**
- * @param {HTMLFormElement} $form 
- */
-export function productContainerHandler($form) {
+export function productContainerHandler() {
 	const $productContainer = $('#product-container');
 	if (!$productContainer) return
-	$productContainer.addEventListener("click", (evt) => clickHandler(evt, $form))
+	$productContainer.addEventListener("click", clickHandler)
 }
