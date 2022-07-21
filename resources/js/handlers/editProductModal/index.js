@@ -6,6 +6,6 @@ export function editProductHandler() {
 	if (!$editForm) return
 	$editForm.addEventListener("submit", (evt) => {
 		evt.preventDefault()
-		submitHandler($form)
+		submitHandler($editForm)
 	})
 }

@@ -17,6 +17,11 @@
 <body>
 	<h1 class="title">Lista de productos</h1>
 	<div class="container">
+		<div class="mb-3">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add-product">
+				Agregar producto
+			</button>
+		</div>
 		<div id="product-container">
 			<?php
 			foreach ($products as $product) {
@@ -39,6 +44,42 @@
 				</div>";
 			}
 			?>
+		</div>
+		<div class="modal fade" id="modal-add-product" tabindex="-1" role="dialog" aria-labelledby="add-product" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<form id="add-product" class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Agregar producto</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div>
+							<div class="mb-3">
+								<label for="new-product-name" class="form-label">Nombre</label>
+								<input type="text" class="form-control" id="new-product-name" name="product-name">
+							</div>
+							<div class="mb-3">
+								<label for="new-product-description" class="form-label">Descripción</label>
+								<textarea class="form-control" id="new-product-description" name="product-description" rows="3"></textarea>
+							</div>
+							<div class="mb-3">
+								<label for="new-product-price">Precio</label>
+								<input type="text" class="form-control" id="new-product-price" name="product-price">
+							</div>
+							<div class="mb-3">
+								<label for="new-product-url">Imagen (URL)</label>
+								<input type="text" class="form-control" id="new-product-url" name="product-url">
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+						<button type="submit" class="btn btn-primary" id="save-edited-product">Guardar producto</button>
+					</div>
+				</form>
+			</div>
 		</div>
 		<div class="modal fade" id="modal-edit-product" tabindex="-1" role="dialog" aria-labelledby="edit-product" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
