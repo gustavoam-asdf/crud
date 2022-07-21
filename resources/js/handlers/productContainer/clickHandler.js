@@ -14,7 +14,7 @@ export function clickHandler(evt) {
  * @type {HTMLButtonElement}
  */
 	const $target = evt.target
-	const $targetType = $target.getAttribute('type')
+	const $targetType = $target.tagName.toLowerCase()
 	if ($targetType !== 'button') return
 
 	const $card = $target.closest('div.card')
