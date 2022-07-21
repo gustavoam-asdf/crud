@@ -5,13 +5,38 @@
 	color: darkorange;
 }
 
-.container {
+#product-container {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-	grid-gap: .3em;
+	grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+	grid-gap: 1em;
 }
 
-.container .card-img-top {
+#product-container .card {
+	padding: .5em;
+}
+
+#product-container .card-img-top {
 	height: 20rem;
 	object-fit: contain;
+}
+
+#product-container .price {
+	font-weight: bold;
+	display: block;
+	font-size: 1.25em;
+	margin-bottom: .75em;
+}
+
+.card .btn {
+	width: 100%;
+}
+
+.edit-form {
+	background-color: gray;
+	position: absolute;
+	display: none;
+	top: 2em;
+	left: 2em;
+	right: 2em;
+	bottom: 2em;
 }
