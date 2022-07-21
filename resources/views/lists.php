@@ -39,7 +39,7 @@
 		</div>
 		<div class="modal fade" id="modal-edit-product" tabindex="-1" role="dialog" aria-labelledby="edit-product" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
+				<form id="edit-product" class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title">Modificar producto</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -47,30 +47,30 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form>
+						<div>
 							<div class="mb-3">
 								<label for="product-name" class="form-label">Nombre</label>
-								<input type="text" class="form-control" id="product-name">
+								<input type="text" class="form-control" id="product-name" name="product-name">
 							</div>
 							<div class="mb-3">
 								<label for="product-description" class="form-label">Descripción</label>
-								<textarea class="form-control" id="product-description" rows="3"></textarea>
+								<textarea class="form-control" id="product-description" name="product-description" rows="3"></textarea>
 							</div>
 							<div class="mb-3">
 								<label for="product-price">Precio</label>
-								<input type="text" class="form-control" id="product-price">
+								<input type="text" class="form-control" id="product-price" name="product-price">
 							</div>
 							<div class="mb-3">
 								<label for="product-url">Imagen (URL)</label>
-								<input type="text" class="form-control" id="product-url">
+								<input type="text" class="form-control" id="product-url" name="product-url">
 							</div>
-						</form>
+						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-primary">Guardar cambios</button>
+						<button type="submit" class="btn btn-primary" id="save-edited-product">Guardar cambios</button>
 					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>

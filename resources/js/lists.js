@@ -3,6 +3,13 @@
  * @returns {HTMLElement | null}
  */
 const $ = (selector) => document.querySelector(selector)
+let productId
+const getProductInputs = () => ({
+	$name: $('#product-name'),
+	$description: $('#product-description'),
+	$price: $('#product-price'),
+	$imageUrl: $('#product-url')
+})
 
 /**
  * @param {HTMLDivElement} $card 
@@ -24,7 +31,7 @@ function getProductCardContent($card) {
 /**
  * @param {MouseEvent} evt 
  */
-function clickHandler(evt) {
+function productContainerClickHandler(evt) {
 	/**
  * @type {HTMLButtonElement}
  */
@@ -32,20 +39,12 @@ function clickHandler(evt) {
 	const $targetType = $target.getAttribute('type')
 	if ($targetType !== 'button') return
 
-	const productInputs = {
-		$name: $('#product-name'),
-		$description: $('#product-description'),
-		$price: $('#product-price'),
-		$imageUrl: $('#product-url')
-	}
-	productInputs.$name.value = ""
-	productInputs.$description.value = ""
-	productInputs.$price.value = ""
-	productInputs.$imageUrl.value = ""
+	const productInputs = getProductInputs()
 
 	const $card = $target.closest('div.card')
 	const targetProduct = getProductCardContent($card)
 
+	productId = Number(targetProduct.id)
 	productInputs.$name.value = targetProduct.name
 	productInputs.$description.value = targetProduct.description
 	productInputs.$price.value = targetProduct.price
@@ -53,8 +52,42 @@ function clickHandler(evt) {
 
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function productContainerHandler() {
 	const $productContainer = $('#product-container');
 	if (!$productContainer) return
-	$productContainer.addEventListener("click", clickHandler)
+	$productContainer.addEventListener("click", productContainerClickHandler)
+}
+
+/**
+ * @param {HTMLFormElement} $form 
+ */
+function saveEditedProductHandler($form) {
+	const data = new FormData($form)
+	data.append('product-id', productId)
+
+	const fetchOptions = {
+		method: 'POST',
+		body: data
+	}
+
+	fetch(`/crud/public/api/v1/products.php`, fetchOptions)
+		.then(res => res.json())
+		.then(data => {
+			console.log(JSON.parse(data))
+		})
+
+}
+
+function editProductHandler() {
+	const $form = $('#edit-product')
+	if (!$form) return
+	$form.addEventListener("submit", (evt) => {
+		evt.preventDefault()
+		saveEditedProductHandler($form)
+	})
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+	productContainerHandler()
+	editProductHandler()
 })
