@@ -72,4 +72,13 @@ class ProductRepository
 		$query->bind_param("ssdsi", $p->name, $p->description, $p->price, $p->imageUrl, $p->id);
 		return $query->execute();
 	}
+
+	public function delete(int $productId)
+	{
+		$query = $this
+			->mysql
+			->prepare("DELETE FROM product WHERE id = ?");
+		$query->bind_param("i", $productId);
+		return $query->execute();
+	}
 }
