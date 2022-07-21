@@ -7,16 +7,16 @@
 
 #product-container {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-	grid-gap: 1em;
+	grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr));
+	grid-gap: 1.25em;
 }
 
 #product-container .card {
-	padding: .5em;
+	padding: .25em;
 }
 
 #product-container .card-img-top {
-	height: 20rem;
+	height: 15.5em;
 	object-fit: contain;
 }
 

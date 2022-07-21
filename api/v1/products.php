@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	header('Content-Type: application/json');
 	$_POST = getRequestBody();
 	$product = new Product(
-		$_POST['id'],
+		0,
 		$_POST['name'],
 		$_POST['description'],
 		$_POST['price'],
@@ -63,7 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	echo json_encode([
 		'ok' => $status,
 		'status' => $status ? 'success' : 'failed',
-		'action' => 'create',
-		'data' => $product
+		'action' => 'create'
 	]);
 }

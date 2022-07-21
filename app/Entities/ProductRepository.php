@@ -44,6 +44,7 @@ class ProductRepository
 					description,
 					price,
 					image_url
+				)
 				VALUES (
 					now(),
 					now(),
