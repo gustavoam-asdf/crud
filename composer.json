@@ -19,7 +19,6 @@
 		"squizlabs/php_codesniffer": "^3.7"
 	},
 	"scripts": {
-		"lint:install": "phpcs --config-set installed_paths ./standards/WordPress/",
-		"lint": "phpcs --standard=WordPress-Extra"
+		"lint:install": "phpcs --config-set installed_paths ./standards/WordPress/"
 	}
 }

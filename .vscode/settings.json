@@ -2,9 +2,9 @@
 	"phpcs.executablePath": "./vendor/bin/phpcs",
 	"phpcs.enable": true,
 	"phpcs.autoConfigSearch": true,
-	"phpcs.standard": "WordPress-Extra",
+	"phpcs.standard": "./phpcs.xml",
 	"phpSniffer.autoDetect": true,
-	"phpSniffer.standard": "WordPress-Extra",
+	"phpSniffer.standard": "./phpcs.xml",
 	"editor.codeActionsOnSave": {
 		"source.fixAll": true
 	},
