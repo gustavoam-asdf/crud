@@ -1,0 +1,19 @@
+{
+	"phpcs.executablePath": "./vendor/bin/phpcs",
+	"phpcs.enable": true,
+	"phpcs.autoConfigSearch": true,
+	"phpcs.standard": "WordPress-Extra",
+	"phpSniffer.autoDetect": true,
+	"phpSniffer.standard": "WordPress-Extra",
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true
+	},
+	"editor.formatOnSave": true,
+	"[php]": {
+		"editor.defaultFormatter": "wongjn.php-sniffer"
+	},
+	"cSpell.words": [
+		"ssds",
+		"ssdsi"
+	]
+}
