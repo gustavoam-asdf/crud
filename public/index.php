@@ -6,7 +6,7 @@ require __DIR__ . '/../config/env.php';
 use App\Entities\ProductRepository;
 use Database\MySQL;
 
-$mysql = new MySQL;
+$mysql = new MySQL();
 $mysql->connect(
 	$_ENV['DB_HOST'],
 	$_ENV['DB_USERNAME'],
@@ -15,8 +15,8 @@ $mysql->connect(
 	$_ENV['DB_PORT']
 );
 
-$productRepository = new ProductRepository($mysql);
+$productRepository = new ProductRepository( $mysql );
 
 $products = $productRepository->getAll();
 
-include '../resources/views/lists.php';
+require '../resources/views/lists.php';
