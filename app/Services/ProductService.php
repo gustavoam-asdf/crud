@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Entities;
+namespace App\Services;
 
+use App\Entities\ProductModel;
 use Database\MySQL;
 
-class ProductRepository {
+class ProductService {
 
 	private MySQL $mysql;
 
@@ -31,7 +32,7 @@ class ProductRepository {
 		return $products;
 	}
 
-	public function create( ProductModel $p ) {
+	public function createOne( ProductModel $p ) {
 		$query = $this
 			->mysql
 			->prepare(
@@ -56,7 +57,7 @@ class ProductRepository {
 		return $query->execute();
 	}
 
-	public function update( ProductModel $p ) {
+	public function updateOne( ProductModel $p ) {
 		$query = $this
 			->mysql
 			->prepare(
@@ -73,7 +74,7 @@ class ProductRepository {
 		return $query->execute();
 	}
 
-	public function delete( int $productId ) {
+	public function deleteOne( int $productId ) {
 		$query = $this
 			->mysql
 			->prepare( 'DELETE FROM product WHERE id = ?' );

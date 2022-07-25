@@ -3,8 +3,8 @@
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../config/env.php';
 
-use App\Entities\ProductRepository;
 use Database\MySQL;
+use App\Controllers\ProductController;
 
 $mysql = new MySQL();
 $mysql->connect(
@@ -15,7 +15,7 @@ $mysql->connect(
 	$_ENV['DB_PORT']
 );
 
-$productRepository = new ProductRepository( $mysql );
+$productRepository = new ProductController( $mysql );
 
 $products = $productRepository->getAll();
 

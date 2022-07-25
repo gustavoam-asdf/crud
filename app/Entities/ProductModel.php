@@ -2,7 +2,7 @@
 
 namespace App\Entities;
 
-class Product {
+class ProductModel {
 
 	public int $id;
 	public string $name;
