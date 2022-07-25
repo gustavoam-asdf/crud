@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Entities\ApiResponseModel;
 use App\Entities\ProductModel;
 use App\Services\ProductService;
 use Database\MySQL;
@@ -33,14 +34,8 @@ class ProductController {
 
 		$status = $this->service->createOne( $product );
 
-		http_response_code( $status ? 200 : 500 );
-		echo json_encode(
-			array(
-				'ok'     => $status,
-				'status' => $status ? 'success' : 'failed',
-				'action' => 'create',
-			)
-		);
+		$res = new ApiResponseModel( $status, 'create' );
+		$res->toJson();
 	}
 
 	public function updateOne() {
@@ -57,14 +52,8 @@ class ProductController {
 
 		$status = $this->service->updateOne( $product );
 
-		http_response_code( $status ? 200 : 500 );
-		echo json_encode(
-			array(
-				'ok'     => $status,
-				'status' => $status ? 'success' : 'failed',
-				'action' => 'update',
-			)
-		);
+		$res = new ApiResponseModel( $status, 'update' );
+		$res->toJson();
 	}
 
 	public function deleteOne() {
@@ -74,13 +63,7 @@ class ProductController {
 
 		$status = $this->service->deleteOne( $data['productId'] );
 
-		http_response_code( $status ? 200 : 500 );
-		echo json_encode(
-			array(
-				'ok'     => $status,
-				'status' => $status ? 'success' : 'failed',
-				'action' => 'delete',
-			)
-		);
+		$res = new ApiResponseModel( $status, 'delete' );
+		$res->toJson();
 	}
 }
